@@ -1,0 +1,10 @@
+{
+  "name": "koa2-for-finneen",
+  "version": "1.0.0",
+  "description": "koa2 for web server",
+  "main": "main.js",
+  "repository": "https://github.com/finneenchueng/test-for-koa.git",
+  "author": "zhuimengyiyuan@msn.cn",
+  "license": "Apache License 2.0",
+  "private": true
+}
