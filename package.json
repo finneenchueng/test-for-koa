@@ -5,6 +5,6 @@
   "main": "main.js",
   "repository": "https://github.com/finneenchueng/test-for-koa.git",
   "author": "zhuimengyiyuan@msn.cn",
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "private": true
 }
