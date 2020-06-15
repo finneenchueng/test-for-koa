@@ -1,12 +1,13 @@
 const gulp = require("gulp");
 const babel = require("gulp-babel");
-// const watch = require("gulp-watch");
+const watch = require("gulp-watch");
 const rollup = require("gulp-rollup");
 const replace = require("rollup-plugin-replace");
 // const ts = require("gulp-typescript");
 // const tsConfig = ts.createProject("./src/server/tsconfig.json");
 // const gulpTslint = require("gulp-tslint");
-const cleanEntry = ["./src/server/config/index.ts"];
+// const cleanEntry = ["./src/server/config/index.ts"];
+const cleanEntry = [];
 const rename = require("gulp-rename");
 // const gulpCopy = require("gulp-copy");
 const eslint = require('gulp-eslint');
