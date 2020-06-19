@@ -21,11 +21,9 @@ export default class ApiController implements interfaces.Controller {
     ctx: Router.IRouterContext,
     next: () => Promise<any>
   ): Promise<any> {
-    console.log(aaa);
     const result: Promise<Object> = await this.apiService.getInfo(
       "https://api.github.com/users/github"
     );
-    // console.log(result);
     ctx.body = result;
   }
 }

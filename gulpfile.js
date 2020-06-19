@@ -121,7 +121,6 @@ function buildprod() {
         .pipe(gulp.dest('./dist'))
     );
   }
-  console.log('dev:', isDev)
   let build = gulp.series(builddev);
   if (isProd) {
     build = gulp.series(buildprod, buildconfig);

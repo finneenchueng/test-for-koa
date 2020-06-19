@@ -21,7 +21,7 @@ export default class IndexController implements interfaces.Controller {
     ctx: Router.IRouterContext,
     next: () => Promise<any>
   ): Promise<any> {
-    const result: Model.User = this.indexService.getUser("1");
+    const result: Model.User = this.indexService.getUser(1);
     ctx.body = await ctx.render("index", { data: result.email });
   }
 }
