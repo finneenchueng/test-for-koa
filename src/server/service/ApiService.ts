@@ -1,4 +1,4 @@
-import { TAGS,inject, provide } from "../config/ioc/ioc";
+import { TAGS,inject, provide } from "../config/ioc";
 import { IApi } from "../interface/IApi";
 import TYPES from "../constant/TYPES";
 @provide(TAGS.ApiService)

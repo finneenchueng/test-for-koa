@@ -1,4 +1,4 @@
-import { TAGS,inject, provide } from "../config/ioc/ioc";
+import { TAGS,inject, provide } from "../config/ioc";
 import { IIdex } from "../interface/IIndex";
 import { Model } from "../model/User";
 import TYPES from "../constant/TYPES";

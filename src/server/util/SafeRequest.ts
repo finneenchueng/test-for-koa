@@ -1,4 +1,4 @@
-import { provide } from "../ioc/ioc";
+import { provide } from "../config/ioc";
 import TYPES from "../constant/TYPES";
 import { ISafeRequest } from "../interface/ISafeRequest";
 import * as fetch from "node-fetch";

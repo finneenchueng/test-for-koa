@@ -1,31 +1,32 @@
-const gulp = require("gulp");
-const babel = require("gulp-babel");
-const watch = require("gulp-watch");
-const rollup = require("gulp-rollup");
-const replace = require("rollup-plugin-replace");
-// const ts = require("gulp-typescript");
-// const tsConfig = ts.createProject("./src/server/tsconfig.json");
-// const gulpTslint = require("gulp-tslint");
-// const cleanEntry = ["./src/server/config/index.ts"];
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const watch = require('gulp-watch');
+const rollup = require('gulp-rollup');
+const replace = require('rollup-plugin-replace');
+// const ts = require('gulp-typescript');
+// const tsConfig = ts.createProject('./src/server/tsconfig.json');
+// const gulpTslint = require('gulp-tslint');
+// const cleanEntry = ['./src/server/config/index.ts'];
 const cleanEntry = [];
-const rename = require("gulp-rename");
-// const gulpCopy = require("gulp-copy");
+const rename = require('gulp-rename');
+// const gulpCopy = require('gulp-copy');
 const eslint = require('gulp-eslint');
 const babelConfig = {
-  presets: ["@babel/preset-typescript"],
+  presets: ['@babel/preset-typescript'],
   plugins: [
     [
-      "@babel/plugin-proposal-decorators",
+      '@babel/plugin-proposal-decorators',
       {
         legacy: true
       }
     ],
-    "@babel/plugin-transform-modules-commonjs"
+    '@babel/plugin-transform-modules-commonjs'
   ]
 };
 
-const entry = "./src/server/**/*.ts";
+const entry = './src/server/**/*.ts';
 
+const { isDev, isLint, isProd } = require('./config/enviroment');
 
 //开发环境
 // function builddev() {
@@ -43,7 +44,7 @@ const entry = "./src/server/**/*.ts";
 //             ...babelConfig
 //           })
 //         )
-//         .pipe(gulp.dest("dist"));
+//         .pipe(gulp.dest('dist'));
 //     }
 //   );
 // }
@@ -58,7 +59,7 @@ function buildprod() {
           ...babelConfig
         })
       )
-      .pipe(gulp.dest("dist"));
+      .pipe(gulp.dest('dist'));
   }
   //对代码进行检查的环境
   function buildlint() {
@@ -73,7 +74,7 @@ function buildprod() {
   //     .src(_entry)
   //     .pipe(
   //       gulpTslint({
-  //         formatter: "stylish"
+  //         formatter: 'stylish'
   //       })
   //     )
   //     .pipe(
@@ -82,7 +83,7 @@ function buildprod() {
   //       })
   //     )
   //     .pipe(tsConfig())
-  //     .pipe(gulp.dest("dist"));
+  //     .pipe(gulp.dest('dist'));
   // }
   //清洗环境
   function buildconfig() {
@@ -91,12 +92,12 @@ function buildprod() {
       .pipe(
         rollup({
           output: {
-            file: "index.js",
-            format: "cjs"
+            file: 'index.js',
+            format: 'cjs'
           },
           plugins: [
             replace({
-              "process.env.NODE_ENV": JSON.stringify("production")
+              'process.env.NODE_ENV': JSON.stringify('production')
             })
           ],
           input: cleanEntry
@@ -104,27 +105,28 @@ function buildprod() {
       )
       .pipe(
         rename(function(path) {
-          // path.extname = ".js";
+          // path.extname = '.js';
         })
       )
-      .pipe(gulp.dest("./dist"));
+      .pipe(gulp.dest('./dist'));
   }
   function builddev() {
-    const sourceFiles = ["./package.json", "./src/server/**"];
+    const sourceFiles = ['./package.json', './src/server/**'];
     //多重拷贝
     // const outputPath = 'some-other-dest/';
     return (
       gulp
         .src(sourceFiles)
         // .pipe(gulpCopy(outputPath))
-        .pipe(gulp.dest("./dist"))
+        .pipe(gulp.dest('./dist'))
     );
   }
+  console.log('dev:', isDev)
   let build = gulp.series(builddev);
-  if (process.env.NODE_ENV == "production") {
+  if (isProd) {
     build = gulp.series(buildprod, buildconfig);
   }
-  if (process.env.NODE_ENV == "lint") {
+  if (isLint) {
     build = gulp.series(buildlint);
   }
-  gulp.task("default", build);
+  gulp.task('default', build);

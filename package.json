@@ -8,8 +8,10 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "server:prod": "cross-env NODE_ENV=development gulp",
-    "server:start": "gulp"
+    "server:start": "cross-env NODE_ENV=development ts-node-dev --respawn --transpileOnly ./dist/app.ts",
+    "server:prod": "cross-env NODE_ENV=production gulp",
+    "server:dev": "cross-env NODE_ENV=development gulp",
+    "server:lint": "cross-env NODE_ENV=lint gulp"
   },
   "dependencies": {
     "co": "^4.6.0",
@@ -42,6 +44,11 @@
     "gulp-rename": "^2.0.0",
     "gulp-rollup": "^2.17.0",
     "gulp-watch": "^5.0.1",
-    "rollup-plugin-replace": "^2.2.0"
+    "rollup-plugin-replace": "^2.2.0",
+    "ts-node-dev": "^1.0.0-pre.49",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.5"
   }
 }

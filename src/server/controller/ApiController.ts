@@ -7,7 +7,7 @@ import {
   Router,
   inject,
   provideThrowable
-} from "../config/ioc/ioc";
+} from "../config/ioc";
 // import { Model } from "../model/User";
 @controller("/api")
 @provideThrowable(TYPE.Controller, "ApiController")

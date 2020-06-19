@@ -1,7 +1,7 @@
 import { configure } from 'log4js';
 import 'reflect-metadata';
 import './config/ioc/inversify.config';
-import { Container, buildProviderModule, InversifyKoaServer } from './config/ioc/ioc';
+import { Container, buildProviderModule, InversifyKoaServer } from './config/ioc';
 import config from './config/basic';
 import { preConfig, preErrConfig } from './config/prepared';
 
