@@ -34,6 +34,14 @@ module.exports = {
                         css: 'vue-style-loader!css-loader',
                     }
                 }
+            },
+            {
+                test: /\.(ts|tsx)$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    appendTsSuffixTo: [/\.vue$/],
+                }
             }
         ]
     }, 

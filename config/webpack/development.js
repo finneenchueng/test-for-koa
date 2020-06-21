@@ -28,14 +28,6 @@ module.exports = merge(baseWebpackConfig, extraAction({
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/,
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                }
-            },
-            {
                 test: /\.css$/,
                 loader: 'vue-style-loader!css-loader'
             },
@@ -43,7 +35,7 @@ module.exports = merge(baseWebpackConfig, extraAction({
                 test: /\.png$/,
                 use: {
                   loader: 'url-loader',
-                  options: { limit: 8192 }
+                  options: { limit: 0 }
                 }
             }
         ]

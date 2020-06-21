@@ -32,7 +32,7 @@ export default defineComponent ({
 // }
 </script>
 
-<style scoped>
+<style scoped lang="css">
 img {
   width: 200px;
 }

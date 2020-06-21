@@ -12,41 +12,66 @@ module.exports = merge(baseWebpackConfig, {
         publicPath: '/blog/',
         filename: 'js/[name].[hash:8].js',
     },
-    performance: {
-        hints: true
-    },
+    // performance: {
+    //     hints: true
+    // },
     mode: 'production',
     module: {
         rules: [
-            {
-                test: /.(ts|tsx)?$/,
-                include: [path.resolve(__dirname, '../../node_modules'), path.resolve(__dirname, '../../src/web')],
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true
-                }
-            },
+            // {
+            //     test: /.(ts|tsx)?$/,
+            //     include: [path.resolve(__dirname, '../../node_modules'), path.resolve(__dirname, '../../src/web')],
+            //     loader: 'babel-loader',
+            //     options: {
+            //         cacheDirectory: true
+            //     }
+            // },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        { 
-                            loader: 'css-loader', 
-                            options: { 
-                                importLoaders: 1 
-                            } 
-                        },
-                        { 
-                            loader: 'postcss-loader', 
-                            options: { 
-                                parser: 'sugarss', 
-                                exec: true 
-                            }
-                        }
-                    ]
-                })
+                use: [
+                  {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: { 
+                        hmr: false,
+                    }
+                  },
+                  'vue-style-loader',
+                  'css-loader'
+                  
+                ]
             },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //       {
+            //         loader: MiniCssExtractPlugin.loader,
+            //         options: { hmr: false }
+            //       },
+            //       'vue-style-loader!css-loader!postcss-loader'
+            //     ]
+            // },
+
+            // {
+            //     test: /\.css$/,
+            //     use: ExtractTextPlugin.extract({
+            //         fallback: 'style-loader',
+            //         use: [
+            //             { 
+            //                 loader: 'css-loader', 
+            //                 options: { 
+            //                     importLoaders: 1 
+            //                 } 
+            //             },
+            //             { 
+            //                 loader: 'postcss-loader', 
+            //                 options: { 
+            //                     parser: 'sugarss', 
+            //                     exec: true 
+            //                 }
+            //             }
+            //         ]
+            //     })
+            // },
             {
                 test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
@@ -89,11 +114,11 @@ module.exports = merge(baseWebpackConfig, {
             chunkFilename: 'css/[id].[hash:8].css',
         }),
         // copy custom static assets
-        new CopyWebpackPlugin([{
-            from: path.resolve(__dirname, '../../src/web/assets/icons/*'),
-            to: path.resolve(__dirname, '../../dist/assets/icons'),
-            ignore: ['.*']
-        }])
+        // new CopyWebpackPlugin([{
+        //     from: path.resolve(__dirname, '../../src/web/assets/icons/*'),
+        //     to: path.resolve(__dirname, '../../dist/assets/icons'),
+        //     ignore: ['.*']
+        // }])
 
     ],
     optimization: {
