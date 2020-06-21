@@ -40,16 +40,6 @@ module.exports = merge(baseWebpackConfig, {
                   
                 ]
             },
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //       {
-            //         loader: MiniCssExtractPlugin.loader,
-            //         options: { hmr: false }
-            //       },
-            //       'vue-style-loader!css-loader!postcss-loader'
-            //     ]
-            // },
 
             // {
             //     test: /\.css$/,
