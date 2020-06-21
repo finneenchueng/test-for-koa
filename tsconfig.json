@@ -4,22 +4,15 @@
       "jsx": "react",
       "target": "es5",
       "lib": ["es6", "dom"],
-      "types": ["reflect-metadata", "jest", "node"],
       "module": "commonjs",
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "baseUrl": "./src",
-      "paths": {
-        "@components/*": ["web/components/*"],
-        "@utils/*": ["web/utils/*"],
-        "@assets/*": ["web/assets"],
-        "@models/*": ["web/models/*"],
-        "@pages/*": ["web/pages/*"],
-      }
+      "baseUrl": "./src/web",
+
     },
     "include": [
-      "src",
+      "src/web",
       "tests"
     ],
     "exclude": [
