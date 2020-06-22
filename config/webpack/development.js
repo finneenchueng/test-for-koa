@@ -21,7 +21,7 @@ module.exports = merge(baseWebpackConfig, extraAction({
     output: {
         path: path.join(__dirname, '../../dist'),
         publicPath: '/',
-        filename: 'js/[name].bundle.js'
+        filename: '[name].bundle.js'
     },
     // performance: {
     //     hints: false
