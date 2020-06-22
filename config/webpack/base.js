@@ -1,14 +1,10 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        polyfill: '@babel/polyfill',
         app: path.resolve(__dirname, '../../src/web/main.ts'),
-    },
-    output: {
-        path: path.resolve(__dirname, './dist/assets'),
-        publicPath: '/blog/',
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.jsx', '.vue', '.json'],
@@ -28,12 +24,7 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        css: 'vue-style-loader!css-loader',
-                    }
-                }
+                loader: 'vue-loader'
             },
             {
                 test: /\.(ts|tsx)$/,
@@ -43,9 +34,24 @@ module.exports = {
                     appendTsSuffixTo: [/\.vue$/],
                 }
             }
+            
         ]
     }, 
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        // copy custom static assets
+        new CopyPlugin({
+            patterns: [{
+                from: path.resolve(__dirname, '../../src/web/assets/icons/*'),
+                // to: 'icons/[name].[contenthash].[ext]',
+                to: 'icons/[name].[ext]',
+            },{
+                from: path.resolve(__dirname, '../../src/web/assets/lib/*'),
+                to: 'lib/[name].[ext]',
+            }],
+            options: {
+                concurrency: 100,
+            },
+        })
     ],
 }

@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require('./base');
 const { isTest } = require('../enviroment');
 
@@ -18,24 +19,39 @@ module.exports = merge(baseWebpackConfig, extraAction({
     exclude: /node_modules/
 },{
     output: {
-        path: path.join(__dirname, '..'),
+        path: path.join(__dirname, '../../dist'),
         publicPath: '/',
         filename: 'js/[name].bundle.js'
     },
-    performance: {
-        hints: false
-    },
+    // performance: {
+    //     hints: false
+    // },
     module: {
         rules: [
+            // {
+            //     test: /\.vue$/,
+            //     loader: 'vue-loader',
+            //     options: {
+            //         loaders: {
+            //             css: 'vue-style-loader!css-loader',
+            //         }
+            //     }
+            // },
             {
                 test: /\.css$/,
-                loader: 'vue-style-loader!css-loader'
+                use: [
+                  {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: { hmr: true }
+                  },
+                  'css-loader'
+                ]
             },
             {
                 test: /\.png$/,
                 use: {
                   loader: 'url-loader',
-                  options: { limit: 0 }
+                  options: { limit: 8192 }
                 }
             }
         ]
@@ -45,10 +61,12 @@ module.exports = merge(baseWebpackConfig, extraAction({
             title: 'Home Page',
             template: path.resolve(__dirname, '../../src/web/template/index.html'),
             filename: 'index.html',
-            chunks: ['app', 'polyfill'],
+            chunks: ['app'],
         }),
-        new webpack.HotModuleReplacementPlugin()
-
+        new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+          })
     ],
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
@@ -57,6 +75,8 @@ module.exports = merge(baseWebpackConfig, extraAction({
         hot: true,
         inline: true,
         clientLogLevel: "none",
+        stats: 'minimal',
+        overlay: true,
         port: 3101
 
     }

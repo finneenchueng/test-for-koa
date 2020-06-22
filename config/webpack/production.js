@@ -1,8 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require('./base');
 
@@ -10,7 +8,7 @@ module.exports = merge(baseWebpackConfig, {
     output: {
         path: path.resolve(__dirname, '../../dist/assets'),
         publicPath: '/blog/',
-        filename: 'js/[name].[hash:8].js',
+        filename: 'js/[name].[hash].js',
     },
     // performance: {
     //     hints: true
@@ -31,44 +29,18 @@ module.exports = merge(baseWebpackConfig, {
                 use: [
                   {
                     loader: MiniCssExtractPlugin.loader,
-                    options: { 
-                        hmr: false,
-                    }
+                    options: { hmr: false }
                   },
-                  'vue-style-loader',
                   'css-loader'
-                  
                 ]
             },
-
-            // {
-            //     test: /\.css$/,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: [
-            //             { 
-            //                 loader: 'css-loader', 
-            //                 options: { 
-            //                     importLoaders: 1 
-            //                 } 
-            //             },
-            //             { 
-            //                 loader: 'postcss-loader', 
-            //                 options: { 
-            //                     parser: 'sugarss', 
-            //                     exec: true 
-            //                 }
-            //             }
-            //         ]
-            //     })
-            // },
             {
                 test: /\.(png|jpg|gif)([\?]?.*)$/,
                 use: {
                     loader: 'url-loader',
                     options: { 
                         limit: 0,
-                        name: 'images/[name].[ext]?hash',
+                        name: 'images/[name].[hash].[ext]',
                     }
                 }
             },
@@ -94,21 +66,15 @@ module.exports = merge(baseWebpackConfig, {
                 // more options:
                 // https://github.com/kangax/html-minifier#options-quick-reference
             },
-            chunks: ['runtime', 'polyfill', 'app', 'common'],
+            chunks: ['app', 'common'],
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-            chunksSortMode: 'dependency'
+            chunksSortMode: 'manual'
         }),
 
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash].css',
-            chunkFilename: 'css/[id].[hash:8].css',
-        }),
-        // copy custom static assets
-        // new CopyWebpackPlugin([{
-        //     from: path.resolve(__dirname, '../../src/web/assets/icons/*'),
-        //     to: path.resolve(__dirname, '../../dist/assets/icons'),
-        //     ignore: ['.*']
-        // }])
+            // chunkFilename: 'css/[id].[hash:8].css',
+        })
 
     ],
     optimization: {
@@ -116,9 +82,6 @@ module.exports = merge(baseWebpackConfig, {
             chunks: 'all',
             name: 'common',
         },
-        runtimeChunk: {
-            name: 'runtime',
-        }
 
     },
     
