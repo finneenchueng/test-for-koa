@@ -28,15 +28,6 @@ module.exports = merge(baseWebpackConfig, extraAction({
     // },
     module: {
         rules: [
-            // {
-            //     test: /\.vue$/,
-            //     loader: 'vue-loader',
-            //     options: {
-            //         loaders: {
-            //             css: 'vue-style-loader!css-loader',
-            //         }
-            //     }
-            // },
             {
                 test: /\.css$/,
                 use: [
