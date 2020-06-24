@@ -8,7 +8,7 @@ const { isTest } = require('../enviroment');
 
 function extraAction(appendOpt, config){
     if(isTest){
-        config.module.rules.push(appendOpt)
+        config.module.rules.push(appendOpt);
     }
     return config;
 }

@@ -12,6 +12,7 @@
         "allow-pascal-case"
       ]
     },
-    "quotemark": [false, "double", "single", "avoid-escape"]
+    "quotemark": [false, "double", "single", "avoid-escape"],
+    "disable-next-line": "no-increment-decrement"
   }
 }

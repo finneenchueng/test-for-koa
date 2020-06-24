@@ -17,9 +17,6 @@ module.exports = {
             '@': path.resolve(__dirname, '../../src/web')
         }
     },
-    performance: {
-        hints: false
-    },
     module: {
         rules: [
             {

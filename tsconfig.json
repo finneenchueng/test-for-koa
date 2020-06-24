@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
       "allowJs": true,
-      "jsx": "react",
       "target": "es5",
       "lib": ["es6", "dom"],
       "module": "commonjs",
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "baseUrl": "./src/web",
-
+      "baseUrl": ".",
+      "strict": true,
+      "paths": {
+        "@/*": ["src/web/*"],
+        "@asset/*": ["src/web/assets/*"]
+      }
     },
     "include": [
       "src/web",

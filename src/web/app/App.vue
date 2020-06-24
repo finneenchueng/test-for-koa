@@ -1,3 +1,8 @@
+<template src='./App.html'></template>
+<script src='./App.ts' lang='ts'></script>
+<style src='./App.css' lang='css'></style>
+
+<!--
 <template>
   <img src="../assets/images/logo.png">
   <h1>Demo for Vue 3!</h1>
@@ -40,3 +45,4 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 </style>
+-->
