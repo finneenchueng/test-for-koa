@@ -57,7 +57,7 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             title: 'Home Page',
             template: path.resolve(__dirname, '../../src/web/template/index.html'),
-            filename: '../../dist/assets/entry.html',
+            filename: '../../dist/views/entry.html',
             inject: true,
             minify: {
                 removeComments: true,

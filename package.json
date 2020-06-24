@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "cross-env rimraf dist",
     "client:dev": "cross-env NODE_ENV=development webpack-dev-server  --config ./config/webpack.config.js --inline --progress",
-    "client:build": "cross-env NODE_ENV=production webpack  --config ./config/webpack.config.js",
+    "client:prod": "cross-env NODE_ENV=production webpack  --config ./config/webpack.config.js",
     "server:start": "cross-env NODE_ENV=development ts-node-dev --respawn --transpileOnly ./dist/app.ts",
     "server:prod": "cross-env NODE_ENV=production gulp",
     "server:dev": "cross-env NODE_ENV=development gulp",
